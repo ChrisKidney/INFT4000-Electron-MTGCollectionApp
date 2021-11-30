@@ -1,0 +1,24 @@
+body.main { 
+    background-image: url(../images/halloween.png) !important; 
+    background-size: cover; 
+}  
+
+body.popup {
+    background-color: rgba(0, 0, 0, 0.95) !important;
+}
+
+#wineAppHeader { 
+    background-color: rgba(0, 0, 0, 0.95) !important;
+} 
+
+#wineAppTitle { 
+    font-family: Papyrus !important; 
+} 
+
+#wineCollection { 
+    background-color: rgba(0, 0, 0, 0.95) !important;
+} 
+
+.wine-list { 
+    background-color: rgba(0, 0, 0, 0.95) !important;
+}

@@ -1,0 +1,22 @@
+{
+  "name": "wineapp",
+  "version": "1.0.0",
+  "description": "Wine App",
+  "main": "./js/index.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "author": "Chris Kidney",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^9.4.4",
+    "jquery": "^3.5.1",
+    "knex": "^0.95.13",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^3.2.3"
+  },
+  "keywords": []
+}
