@@ -5,6 +5,7 @@ const $ = require('jquery');
 const cardDiv = document.getElementById('cardCollection');
 const cardTotalValue = document.getElementById('cardTotalValue');
 const cardTotalOwned = document.getElementById('cardTotalOwned');
+const addBtn = document.getElementById('addBtn');
 let ul = document.createElement('ul');
 ul.setAttribute("class","card-text text-light list-group");
 
@@ -64,3 +65,7 @@ ipcRenderer.on('item:add', function(e,items) {
 ipcRenderer.on('item:clear', function(){
   ul.innerHTML = '';
 });
+
+addBtn.addEventListener('click', (e)=>{
+  ipcRenderer.send('loadAddWindow');
+})

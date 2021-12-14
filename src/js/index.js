@@ -22,7 +22,6 @@ let knex = require("knex")({
 let mainWindow;
 let addWindow;
 let updateWindow;
-let deleteWindow;
 
 //Create the settings class
 const settings = new Settings({
@@ -58,6 +57,7 @@ function createWindow() {
       let themeCss = settings.get('theme');
       mainWindow.webContents.insertCSS(themeCss);
     }
+    readDB();
   });
 
   mainWindow.on('closed', function() {
@@ -121,32 +121,6 @@ function createUpdateWindow(id){
 
   updateWindow.on('close', function() {
     updateWindow = null;
-  })
-
-}
-
-//Delete Window
-function createDeleteWindow(){
-  deleteWindow = new BrowserWindow({
-    width: 500,
-    height: 500,
-    title: 'Delete Item',
-	autoHideMenuBar: true,
-    webPreferences: {
-      nodeIntegration: true
-    },
-  })
-
-  deleteWindow.loadFile('./html/deleteWindow.html');
-
-  // Load the user's theme on initial window creation
-  deleteWindow.webContents.on('did-finish-load', function () {
-    let themeCss = settings.get('theme');
-    deleteWindow.webContents.insertCSS(themeCss);
-  });
-
-  deleteWindow.on('close', function() {
-    deleteWindow = null;
   })
 
 }
@@ -250,6 +224,10 @@ ipcMain.on('loadUpdateWindow', function(e, args){
   createUpdateWindow(id);
 })
 
+ipcMain.on('loadAddWindow', function(e){
+  createAddWindow();
+})
+
 //Clear window
 function clearWindow()
 {
@@ -296,20 +274,6 @@ const mainMenuTemplate = [
         label: 'Create',
         accelerator:'CmdOrCtrl + Return',
         click() {createAddWindow()}
-      },
-      {
-        label: 'Read',
-        click(){readDB()}
-      },
-	  {
-        label: 'Update',
-        accelerator:'CmdOrCtrl + u',
-        click(){createUpdateWindow()}
-      },
-	  {
-        label: 'Delete',
-        accelerator:'CmdOrCtrl + Delete',
-        click(){createDeleteWindow()}
       },
 	  {
         label: 'Clear',
