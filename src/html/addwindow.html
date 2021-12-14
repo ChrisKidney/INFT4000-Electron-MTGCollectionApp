@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Add Wine</title>
+    <title>Add Card</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   </head>
   <body class='popup'>
@@ -13,44 +13,29 @@
             <td><input class='form-control' type="text" id="name" autofocus></td>
           </tr>
           <tr>
-            <td><label class='text-light' for="category">Category:</label></td>
-            <td>
-              <select  class='form-control' id="category" name="category" onchange="changeType(this.value)">
-                <option value="">Choose option</option>
-                <option value="Red">Red</option>
-                <option value="White">White</option>
-                <option value="Dessert">Dessert</option>
-              </select>
-            </td>
+            <td><label class='text-light' for="category">Text:</label></td>
+            <td><textarea class='form-control' type="text" id="text" autofocus></textarea></td>
           </tr>
           <tr>
-            <td><label class='text-light' for="type">Type:</label></td>
-            <td>
-              <select class='form-control' id="type" name="type">
-                <option value="" disabled selected>Choose option</option>
-              </select>
-            </td>
+            <td><label class='text-light' for="type">Cost:</label></td>
+            <td><input class='form-control' type="text" id="cost" autofocus></td>
           </tr>
           <tr>
-            <td><label class='text-light' for="year">Year:</label></td>
-            <td><input class='form-control' type="number" id="year" autofocus></td>
-          </tr>    
+            <td><label class='text-light' for="type">Value($):</label></td>
+            <td><input class='form-control' type="text" id="value" autofocus></td>
+          </tr>
           <tr>
-            <td><label class='text-light' for="winery">Winery:</label></td>
-            <td><input class='form-control' type="text" id="winery" autofocus></td>
-          </tr> 
+            <td><label class='text-light' for="type">Owned:</label></td>
+            <td><input class='form-control' type="number" id="owned" autofocus></td>
+          </tr>
           <tr>
-            <td><label class='text-light' for="year_purchased">Year Purchased:</label></td>
-            <td><input class='form-control' type="number" id="year_purchased" autofocus></td>
-          </tr> 
-          <tr>
-            <td><label class='text-light' for="rating">Rating:</label></td>
-            <td><input class='form-control' type="number" id="rating" value='1' max='10' min='1' autofocus></td>
-          </tr> 
+            <td><label class='text-light' for="type">Image URL:</label></td>
+            <td><input class='form-control' type="text" id="img" autofocus></td>
+          </tr>
         </table>
       </div>
       <div class='d-flex justify-content-center p-2'>
-        <button class='btn btn-outline-danger text-light' type="submit">Add Wine</button>
+        <button class='btn btn-outline-danger text-light' type="submit">Add Card</button>
       </div>
     </form>
   </body>

@@ -13,7 +13,7 @@ const {
 let knex = require("knex")({
     client: "sqlite3",
     connection:{
-        filename:"./wine.db"
+        filename:"./card.db"
     },
     useNullAsDefault: true
 });
@@ -54,7 +54,7 @@ function createWindow() {
       mainWindow.webContents.insertCSS(themeCss);
     }
     else {
-      regularTheme();
+      darkTheme();
       let themeCss = settings.get('theme');
       mainWindow.webContents.insertCSS(themeCss);
     }
@@ -100,18 +100,18 @@ function createAddWindow() {
 }
 
 //Update Window
-function createUpdateWindow(){
+function createUpdateWindow(id){
   updateWindow = new BrowserWindow({
     width: 500,
     height: 500,
 	autoHideMenuBar: true,
-    title: 'Update Wine',
+    title: 'Update Card',
     webPreferences: {
       nodeIntegration: true
     },
   })
 
-  updateWindow.loadFile('./html/updateWindow.html');
+  updateWindow.loadFile('./html/updateWindow.html', {query: {'id': id}});
 
   // Load the user's theme on initial window creation
   updateWindow.webContents.on('did-finish-load', function () {
@@ -155,14 +155,13 @@ function createDeleteWindow(){
 
 //Create item
 ipcMain.on('item:add', function(e, itemInfo) {
-  knex("wines").insert({
+  knex("cards").insert({
 	  name: itemInfo[0],
-	  category: itemInfo[1],
-	  type: itemInfo[2],
-      year: itemInfo[3],
-      winery: itemInfo[4],
-      yearPurchased: itemInfo[5],
-      rating: itemInfo[6],
+	  text: itemInfo[1],
+	  cost: itemInfo[2],
+    value: itemInfo[3],
+    owned: itemInfo[4],
+    img: itemInfo[5],
 	  })
   .catch(err =>{
     console.log(err)
@@ -180,8 +179,8 @@ function readDB()
   clearWindow()
   let result = 
     knex
-    .select("wineId","name","category","type","year","winery","yearPurchased","rating")
-    .from("wines")
+    .select("id","name","text","cost","value","owned","img")
+    .from("cards")
     .catch(err =>{
       console.log(err)
     });
@@ -196,9 +195,9 @@ ipcMain.on('item:search', function(e,id)
 {
   let result = 
     knex
-    .select("wineId","name","category","type","year","winery","yearPurchased","rating")
-    .from("wines")
-    .where('wineId',id)
+    .select("id","name","text","cost","value","owned","img")
+    .from("cards")
+    .where('id',id)
     .catch(err =>{
       console.log(err)
       updateWindow.webContents.send('item:not-found');
@@ -214,14 +213,13 @@ ipcMain.on('item:update', function(e,itemInfo)
 {  
   let id = itemInfo[0]
   
-  knex("wines").where({wineId: id}).update({
+  knex("cards").where({id: id}).update({
         name: itemInfo[1],
-        category: itemInfo[2],
-        type: itemInfo[3],
-        year: itemInfo[4],
-        winery: itemInfo[5],
-        yearPurchased: itemInfo[6],
-        rating: itemInfo[7],
+        text: itemInfo[2],
+        cost: itemInfo[3],
+        value: itemInfo[4],
+        owned: itemInfo[5],
+        img: itemInfo[6],
 	  })
   .catch(err =>{
     console.log(err)
@@ -237,16 +235,20 @@ ipcMain.on('item:update', function(e,itemInfo)
 
 //Delete item
 ipcMain.on('item:delete', function(e, id){
-  knex('wines').where({"wineId" : id}).del()
+  knex('cards').where({"id" : id}).del()
   .catch(err =>{
     console.log(err)
   })
   .then(() =>{
-    deleteWindow.close();  
     console.log(id +": Deleted");
 	readDB();
   })
 });
+
+ipcMain.on('loadUpdateWindow', function(e, args){
+  let id = args[0];
+  createUpdateWindow(id);
+})
 
 //Clear window
 function clearWindow()
@@ -256,12 +258,12 @@ function clearWindow()
 }
 
 // Themes
-function regularTheme()
+function darkTheme()
 {
   let themeCss;
 
   try {
-    themeCss = fs.readFileSync('css/regular.css', 'utf-8');
+    themeCss = fs.readFileSync('css/dark.css', 'utf-8');
   }
   catch (err) {
     console.log('Error: ' + err.message);
@@ -271,11 +273,11 @@ function regularTheme()
   mainWindow.webContents.insertCSS(themeCss);
 }
 
-function halloweenTheme(){
+function lightTheme(){
   let themeCss ;
 
   try {
-    themeCss = fs.readFileSync('css/halloween.css', 'utf-8');
+    themeCss = fs.readFileSync('css/light.css', 'utf-8');
   }
   catch (err) {
     console.log('Error: ' + err.message);
@@ -284,21 +286,6 @@ function halloweenTheme(){
   settings.set('theme', themeCss);
   mainWindow.webContents.insertCSS(themeCss);
 }
-
-function christmasTheme(){
-  let themeCss;
-  
-  try {
-    themeCss = fs.readFileSync('css/christmas.css', 'utf-8');
-  }
-  catch (err) {
-    console.log('Error: ' + err.message);
-  }
-
-  settings.set('theme', themeCss);
-  mainWindow.webContents.insertCSS(themeCss);
-}
-
 
 //Menu Template
 const mainMenuTemplate = [
@@ -312,7 +299,6 @@ const mainMenuTemplate = [
       },
       {
         label: 'Read',
-        accelerator:'CmdOrCtrl + r',
         click(){readDB()}
       },
 	  {
@@ -338,19 +324,15 @@ const mainMenuTemplate = [
     ]
   },
   {
-    label: 'Settings',
+    label: 'Themes',
     submenu: [
       {
-        label: 'Regular Theme',
-        click() {regularTheme()}
+        label: 'Dark Theme',
+        click() {darkTheme()}
       },
       {
-        label: 'Halloween Theme',
-        click() {halloweenTheme()}
-      },
-      {
-        label: 'Christmas Theme',
-        click(){christmasTheme()}
+        label: 'Light Theme',
+        click() {lightTheme()}
       }
     ]
   },
@@ -359,4 +341,25 @@ const mainMenuTemplate = [
   }
 ];
 
+
+//TODO remove
+mainMenuTemplate.push({
+  label: 'devtools',
+  submenu: [
+    {
+      label: 'toggle',
+      click(item, focusedWinndow) {
+        focusedWinndow.toggleDevTools();
+      }
+    },
+    {
+      role: 'reload'
+    }
+  ]
+})
+
 app.on('ready', createWindow)
+
+module.exports = {
+  createUpdateWindow: createUpdateWindow
+}

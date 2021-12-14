@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Wine App</title>
+    <title>MTG App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <style>
       ul li{
@@ -14,16 +14,39 @@
     </style>
   </head>
   <body class='main'>
-    <div class='card p-3 m-2 wine-list' id='wineAppHeader'>
-      <h1 class='card-title text-light' id='wineAppTitle'>Wine Application</h1>
-      <p class='card-text text-light'>File > Create or Ctrl/Cmd+Enter to open create window.</p>
-      <p class='card-text text-light'>File > Read or Ctrl/Cmd+R to display existing wines.</p>
-      <p class='card-text text-light'>File > Update or Ctrl/Cmd+U to open update window.</p>
-      <p class='card-text text-light'>File > Delete or Ctrl/Cmd+Del to open delete window.</p>
-      <p class='card-text text-light'>File > Clear or Ctrl/Cmd+E to clear display.</p>
-      <p class='card-text text-light'>File > Quit or Ctrl/Cmd+Q to quit.</p>
+    <div class="row d-flex justify-content-between m-2">
+      <div class=' p-3 card-list col-6' id='cardAppHeader'>
+        <h1 class='card-title text-light' id='cardAppTitle'>MTG Application</h1>
+        <p class='card-text text-light'>File > Create or Ctrl/Cmd+Enter to open create window.</p>
+        <p class='card-text text-light'>File > Read or Ctrl/Cmd+R to display existing wines.</p>
+        <p class='card-text text-light'>File > Update or Ctrl/Cmd+U to open update window.</p>
+        <p class='card-text text-light'>File > Delete or Ctrl/Cmd+Del to open delete window.</p>
+        <p class='card-text text-light'>File > Clear or Ctrl/Cmd+E to clear display.</p>
+        <p class='card-text text-light'>File > Quit or Ctrl/Cmd+Q to quit.</p>
+        <p class='card-text text-light'>Select a Card from the list to view it's image.</p>
+      </div>
+      <div class=' p-3 card-list col-6 d-flex' id='cardAppHeader'>
+        <img src="../images/logo.png" class='img-fluid mx-auto'>
+      </div>
     </div>
-    <div id="wineCollection" class='card p-3 m-2 overflow-auto'></div>
+    <div class='row d-flex justify-content-between m-2'>
+      <div id="cardInfo" class='card p-3  col-4'>
+        <h2 class='card-text text-light'>Total Value: </h2><h2 class='card-text text-light' id='cardTotalValue'></h2>
+      </div>
+      <div id="cardInfo" class='card p-3 col-3'>
+        <h2 class='card-text text-light'>Total Owned: </h2><h2 class='card-text text-light' id='cardTotalOwned'></h2>
+      </div>
+      <div id="cardInfo" class='card p-3 col-4'>
+        <h2 class='card-text text-light'>Card Image</h2>
+      </div>
+    </div>
+    </div>
+    <div class='row m-2'>
+      <div id="cardCollection" class='card p-3 overflow-auto col-8'></div>
+      <div id="cardImgContainer" class='col-4 card p-1'>
+        <img id="cardImg" class='img-fluid'></div>
+      </div>
+    </div>
   </body>
     <script src='../js/mainwindow.js'></script>
 </html>

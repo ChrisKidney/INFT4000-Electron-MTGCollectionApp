@@ -1,0 +1,29 @@
+body.main{ 
+    background-image: url(../images/background.png) !important; 
+    background-size: cover;  
+} 
+
+body.popup {
+    background-color: rgba(31, 29, 29, 0.95) !important;
+}
+
+
+#cardAppTitle { 
+    font-family: Times New Roman !important; 
+} 
+
+#cardAppTitle, #cardCollection, #cardInfo, #cardImgContainer, #cardImg, .card-list { 
+    background-color: rgba(31, 29, 29, 0.95) !important;
+} 
+
+#table-headers > h3 {
+    display: inline;
+    vertical-align: baseline;
+
+}
+
+.fixed {
+    position: fixed;
+    top: 20px;
+}
+ 

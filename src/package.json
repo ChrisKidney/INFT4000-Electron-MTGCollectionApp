@@ -1,7 +1,7 @@
 {
-  "name": "wineapp",
+  "name": "mtgapp",
   "version": "1.0.0",
-  "description": "Wine App",
+  "description": "MTG App",
   "main": "./js/index.js",
   "scripts": {
     "start": "electron .",
