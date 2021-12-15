@@ -11,27 +11,27 @@
         <table>
           <tr>
             <td><label class='text-light' for='name'>Name:</label></td>
-            <td><input class='form-control' type='text' id='name' autofocus></td>
+            <td><input class='form-control' type='text' id='name' required autofocus></td>
           </tr>
           <tr>
             <td><label class='text-light' for='text'>Text:</label></td>
-            <td><textarea class='form-control' type='text' id='text'></textarea></td>
+            <td><textarea class='form-control' type='text' id='text' required></textarea></td>
           </tr>
           <tr>
             <td><label class='text-light' for='cost'>Cost:</label></td>
-            <td><input class='form-control' type='text' id='cost'></td>
+            <td><input class='form-control' type='text' id='cost' required></td>
           </tr>
           <tr>
             <td><label class='text-light' value='type'>Value($):</label></td>
-            <td><input class='form-control' type='text' id='value'></td>
+             <td><input class='form-control' type='number' id='value' min='0' value='0' required></td>
           </tr>
           <tr>
             <td><label class='text-light' for='owned'>Owned:</label></td>
-            <td><input class='form-control' type='number' id='owned'></td>
+            <td><input class='form-control' type='number' id='owned' min='0' value='0' required></td>
           </tr>
           <tr>
             <td><label class='text-light' for='img'>Image URL:</label></td>
-            <td><input class='form-control' type='text' id='img' title='For best results, Copy Image Address from a card on scryfall.com'></td>
+            <td><input class='form-control' type='url' id='img' title='For best results, Copy Image Address from a card on scryfall.com' required></td>
           </tr>
         </table>
       </div>

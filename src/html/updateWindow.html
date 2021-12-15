@@ -16,31 +16,31 @@
 			</tr>
 			<tr>
 				<td><label class='text-light'>Name: </label></td>
-				<td><input class='form-control' type="text" id="name"></td>
+				<td><input class='form-control' type="text" id="name" required></td>
 			</tr>
 			<tr>
 				<td><label class='text-light'>Text: </label></td>
-				<td><textarea class='form-control w-100' id='text' rows="3"></textarea></td>
+				<td><textarea class='form-control w-100' id='text' rows="3" required></textarea></td>
 			</tr>
 			<tr>
 				<td><label class='text-light'>Cost: </label></td>
-				<td><input class='form-control' type="text" id="cost"></td>
+				<td><input class='form-control' type="text" id="cost" required></td>
 			</tr>
 			<tr>
 				<td><label class='text-light'>Value($): </label></td>
-				<td><input class='form-control' type="text" id="value"></td>
+				<td><input class='form-control' type="number" id="value" min='0' value='0' required ></td>
 			</tr>
 			<tr>
 				<td><label class='text-light'>Owned: </label></td>
-				<td><input class='form-control' type="number" id="owned"></td>
+				<td><input class='form-control' type="number" id="owned" min='0' value='0' required></td>
 			</tr>
 			<tr>
 				<td><label class='text-light'>Image URL: </label></td>
-				<td><input class='form-control' type="text" id="img" title='For best results, Right Click > Copy Image Address from a card on scryfall.com'></td>
+				<td><input class='form-control' type='url' id="img" title='For best results, Right Click > Copy Image Address from a card on scryfall.com' required></td>
 			</tr>	
 		</table>
 		<div class='d-flex justify-content-center p-2'>
-			<button class='btn btn-outline-success text-light' id="updateButton">Update Item</button>
+			<button class='btn btn-outline-success text-light' id="updateButton">Update Card</button>
 		</div>
 	  </div>
 	<script src="../js/updatewin.js"></script>
