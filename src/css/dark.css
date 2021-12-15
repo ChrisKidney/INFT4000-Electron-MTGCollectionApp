@@ -21,9 +21,7 @@ body.popup {
     vertical-align: baseline;
 
 }
-
-.fixed {
-    position: fixed;
-    top: 20px;
-}
  
+li:focus {
+    outline: green solid 2px;
+}
