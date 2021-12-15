@@ -300,23 +300,6 @@ const mainMenuTemplate = [
   }
 ];
 
-
-//TODO remove
-mainMenuTemplate.push({
-  label: 'devtools',
-  submenu: [
-    {
-      label: 'toggle',
-      click(item, focusedWinndow) {
-        focusedWinndow.toggleDevTools();
-      }
-    },
-    {
-      role: 'reload'
-    }
-  ]
-})
-
 app.on('ready', createWindow)
 
 module.exports = {
