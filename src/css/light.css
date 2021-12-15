@@ -1,24 +1,29 @@
-body.main { 
-    background-image: url(../images/halloween.png) !important; 
-    background-size: cover; 
-}  
+body.main{ 
+    background-image: url(../images/light.png) !important; 
+    background-size: cover;  
+} 
 
 body.popup {
-    background-color: rgba(0, 0, 0, 0.95) !important;
+    background-color: rgba(143, 166, 229, 0.95) !important;
 }
 
-#wineAppHeader { 
-    background-color: rgba(0, 0, 0, 0.95) !important;
+
+#cardAppTitle { 
+    font-family: Times New Roman !important; 
 } 
 
-#wineAppTitle { 
-    font-family: Papyrus !important; 
+#cardAppTitle, #cardCollection, #cardInfo, #cardImgContainer, #cardImg, .card-list { 
+    background-color: rgba(143, 166, 229, 0.95) !important;
 } 
 
-#wineCollection { 
-    background-color: rgba(0, 0, 0, 0.95) !important;
-} 
+#table-headers > h3 {
+    display: inline;
+    vertical-align: baseline;
 
-.wine-list { 
-    background-color: rgba(0, 0, 0, 0.95) !important;
 }
+
+.fixed {
+    position: fixed;
+    top: 20px;
+}
+ 

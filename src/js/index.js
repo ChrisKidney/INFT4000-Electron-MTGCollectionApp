@@ -76,8 +76,8 @@ function createWindow() {
 //Add Window
 function createAddWindow() {
   addWindow = new BrowserWindow({
-    width: 500,
-    height: 500,
+    width: 650,
+    height: 650,
     title: 'Add Item',
 	autoHideMenuBar: true,
     webPreferences: {
@@ -102,8 +102,8 @@ function createAddWindow() {
 //Update Window
 function createUpdateWindow(id){
   updateWindow = new BrowserWindow({
-    width: 500,
-    height: 500,
+    width: 650,
+    height: 650,
 	autoHideMenuBar: true,
     title: 'Update Card',
     webPreferences: {
@@ -275,12 +275,7 @@ const mainMenuTemplate = [
         accelerator:'CmdOrCtrl + Return',
         click() {createAddWindow()}
       },
-	  {
-        label: 'Clear',
-        accelerator:'CmdOrCtrl + e',
-        click(){clearWindow()}
-      },
-	  {
+	    {
         label: 'Quit',
         accelerator:'CmdOrCtrl + q',
         click(){app.quit()}
